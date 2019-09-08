@@ -1,0 +1,36 @@
+mov r1,1        //The Smallest no.
+mov r2,0        //Count which should be equal to 2
+mov r3,1        //first variable i
+.loop: 
+        mul r4,r3,r3 	 //i*i
+        mul r4,r4,r3    //i*i*i
+        add r5,r3,1	//second variable j
+        .loop1:
+                mul r6,r5,r5 	//j*j
+                mul r6,r6,r5	//j*j*j
+                add r7,r6,r4	//i*i*i + j*j*j
+                cmp r7,r1	//comparing r7 with r1(the no.)
+                beq .loop2	//if equal then goto loop2
+                
+		.loop3:			//else continue to loop3
+                        cmp r2,2	//check if r2 is equal to 2.
+                        beq .loop4	//if equal goto loop4
+                        add r1,r1,1	//else increase the number
+                        cmp r6,r1	//compare j*j*j with the number
+                        bgt .loop5	//if greater than the number then go to loop5 and increment i
+                        add r5,r5+1	//else increment j
+                        b. loop1	//start again from loop1
+
+        .loop2: 
+                add r2,r2,1	//increase the count
+                b .loop3	//goto loop3
+
+        .loop4:
+                exit	//number is found and exit and the result is in r1.
+        .loop5: 
+                add r3,r3,1	//since j*j*j is greater than number therefore increment i.
+                b .loop         //goto loop              
+                        
+                         
+
+       
